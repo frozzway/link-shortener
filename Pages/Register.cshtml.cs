@@ -35,7 +35,7 @@ public class Register : PageModel
 
             if (_userService.GetByEmail(email) != null)
             {
-                ModelState.AddModelError("email", "Пользователь с таким email уже существует");
+                TempData["RegistrationMessage"] = "Email занят";
                 return Page();
             }
             

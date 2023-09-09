@@ -7,16 +7,14 @@
     var links = Model._userService.GetUserLinks(Model._user);
 }
 
-<h1>Hey</h1>
 
-
-<form method="post">
-    <div>
-        <label for="link">Link:</label>
-        <input type="text" name="link" id="link" required />
+<form method="post" class="m-auto mt-sm-5 mt-3" style="max-width: 600px;">
+    <div class="">
+        <label for="link" class="d-block text-center fs-4">Сокращатель ссылок</label>
+        <input type="text" name="link" id="link" class="my-2 form-control" required />
     </div>
-    <div>
-        <input type="submit" value="Сократить" />
+    <div class="">
+        <input type="submit" value="Сократить" class="btn d-block btn-primary mb-4 m-auto" />
     </div>
 </form>
 
@@ -27,10 +25,27 @@
     </div>
 }
 
-<ul>
-    @foreach (var link in links)
-    {
-        <li>@link.SourceLink</li>
-    }
-</ul>
+<table class="table table-info table-stripped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Source link</th>
+        <th scope="col">Short code</th>
+        <th scope="col">Date</th>
+        <th scope="col">Counter</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < links.Length; i++)
+        {
+            <tr>
+                <th scope="row">@i</th>
+                <td>@links[i].SourceLink</td>
+                <td>/@links[i].ShortCode</td>
+                <td>@links[i].Created.ToUniversalTime().AddHours(5)</td>
+                <td>@links[i].Counter</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
