@@ -1,0 +1,36 @@
+@page
+@model LinkShortener.Pages.Panel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Short links here";
+    var links = Model._userService.GetUserLinks(Model._user);
+}
+
+<h1>Hey</h1>
+
+
+<form method="post">
+    <div>
+        <label for="link">Link:</label>
+        <input type="text" name="link" id="link" required />
+    </div>
+    <div>
+        <input type="submit" value="Сократить" />
+    </div>
+</form>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
+<ul>
+    @foreach (var link in links)
+    {
+        <li>@link.SourceLink</li>
+    }
+</ul>
+

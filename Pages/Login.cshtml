@@ -1,0 +1,26 @@
+@page
+@model LinkShortener.Pages.Login
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Login";
+}
+<h1>Вход в систему</h1>
+
+<form method="post">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    <div>
+        <label for="password">Пароль:</label>
+        <input type="password" name="password" id="password" required />
+    </div>
+    <div>
+        <input type="submit" value="Войти" />
+    </div>
+</form>
+
+<div>
+    <a asp-page="Register">Зарегистрироваться</a>
+</div>

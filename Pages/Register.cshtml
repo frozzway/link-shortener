@@ -1,0 +1,33 @@
+@page
+@model LinkShortener.Pages.Register
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Registration";
+}
+
+<h1>Регистрация</h1>
+
+<form method="post">
+    <div>
+        <label for="name">Имя пользователя:</label>
+        <input type="text" name="name" id="name" required />
+    </div>
+    
+    <div>
+        <label for="name">Email:</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    
+    <div>
+        <label for="password">Пароль:</label>
+        <input type="password" name="password" id="password" required />
+    </div>
+    <div>
+        <input type="submit" value="Зарегистрироваться" />
+    </div>
+</form>
+
+<div>
+    <a asp-page="Login">Войти в систему</a>
+</div>
