@@ -37,6 +37,6 @@ public class UserService
 
     public Link[] GetUserLinks(User user)
     {
-        return _context.Links.Where(l => l.User == user).ToArray();
+        return _context.Links.Where(l => l.User == user).OrderByDescending(l => l.Id).ToArray();
     }
 }

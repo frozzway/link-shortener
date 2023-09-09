@@ -13,14 +13,12 @@ namespace LinkShortener.Pages;
 [IgnoreAntiforgeryToken]
 public class Panel : PageModel
 {
-    private HttpContext _context;
     public User _user;
     public LinkService _linkService;
     public UserService _userService;
     
     public Panel(IHttpContextAccessor contextAccessor, LinkService linkService, UserService userService)
     {
-        _context = contextAccessor.HttpContext!;
         _linkService = linkService;
         _userService = userService;
     }
@@ -39,6 +37,10 @@ public class Panel : PageModel
         {
             return Page();
         }
+        if (!sourceLink.StartsWith("http://") && !sourceLink.StartsWith("https://"))
+        {
+            sourceLink = "http://" + sourceLink;
+        }
         var shortCode = CreateUniqueShortCode(9);
         var link = new Link
         {
@@ -53,7 +55,7 @@ public class Panel : PageModel
         else 
             TempData["Message"] = $"Такая ссылка уже добавлена";
         
-        return Page();
+        return RedirectToPage("/my");
     }
 
     private string CreateUniqueShortCode(int length)
@@ -75,7 +77,7 @@ public class Panel : PageModel
         for (var i = 0; i < length; i++)
         {
             var c = random.Next(0, 26); // случайное число от 0 до 25
-            if (random.Next(0, 2) == 0) // случайное число от 0 до 1
+            if (random.Next(0, 4) == 0) // случайное число от 0 до 1
             {
                 c += 'A'; // преобразуем в большую букву [A-Z]
             }

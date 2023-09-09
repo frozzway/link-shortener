@@ -37,7 +37,7 @@ public class LinkService
         var link = _context.Links.First(l => l.ShortCode == shortCode);
         using (var transaction = _context.Database.BeginTransaction(IsolationLevel.RepeatableRead))
         {
-            link.Counter++;
+            _context.Database.ExecuteSqlRaw("UPDATE public.\"Links\" SET \"Counter\" = \"Counter\" + 1 WHERE \"Id\" = {0}", link.Id);
             _context.SaveChanges();
             transaction.Commit();
         }

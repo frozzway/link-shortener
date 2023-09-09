@@ -34,7 +34,7 @@ public class Login : PageModel
             }
         }
         
-        ModelState.AddModelError("", "Неверное имя пользователя или пароль");
+        TempData["LoginMessage"] = "Неверное имя пользователя или пароль";
         return Page();
     }
 }

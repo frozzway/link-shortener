@@ -5,22 +5,23 @@
     Layout = "_Layout";
     ViewBag.Title = "Login";
 }
-<h1>Вход в систему</h1>
 
-<form method="post">
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required />
+<form method="post" class="m-auto mt-sm-5 mt-3" style="width: 300px;">
+    <p class="text-center fs-3">Авторизация</p>
+    <div class="mb-1">
+        <input placeholder="Email" type="email" name="email" id="email" class="form-control" required/>
+    </div>
+    <div class="mb-1">
+        <input placeholder="Пароль" type="password" class="form-control" name="password" id="password" required/>
+    </div>
+    <div class="mb-1">
+        <input type="submit" value="Войти" class="btn btn-primary w-100 mx-auto d-block"/>
     </div>
     <div>
-        <label for="password">Пароль:</label>
-        <input type="password" name="password" id="password" required />
+        <a href="/register" class="btn mx-auto d-block">Зарегистрироваться</a>
     </div>
-    <div>
-        <input type="submit" value="Войти" />
-    </div>
+    @if (TempData["LoginMessage"] != null)
+        {
+            <p class="text-danger mt-2">@TempData["LoginMessage"]</p>
+        }
 </form>
-
-<div>
-    <a asp-page="Register">Зарегистрироваться</a>
-</div>

@@ -14,11 +14,6 @@ public class LinksHandler
         
         if (sourceLink is null)
             return Results.NotFound();
-        
-        if (!sourceLink.StartsWith("http://") && !sourceLink.StartsWith("https://"))
-        {
-            sourceLink = "http://" + sourceLink;
-        }
 
         while (true)
         {
